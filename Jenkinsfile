@@ -1,21 +1,39 @@
 pipeline {
+
     agent any
-    
+
     stages {
+
         stage('Build') {
+
             steps {
-                sh 'mvn clean package' // Replace with your build command
+
+                sh 'mvn clean package'
+
             }
+
         }
+
         stage('Test') {
+
             steps {
-                sh 'mvn test' // Replace with your test command
+
+                sh 'pytest tests.py'
+
             }
+
         }
+
         stage('Deploy') {
+
             steps {
-                echo 'Deploying the application...' // Add actual deployment steps here
+
+                sh 'ssh user@server "docker deploy myapp"'
+
             }
+
         }
+
     }
+
 }
